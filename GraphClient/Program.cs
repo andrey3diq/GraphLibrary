@@ -12,7 +12,7 @@ namespace GraphClient
         static void Main(string[] args)
         {
             IGraph graph;
-            const string graphFile = "mediumG.txt";
+            const string graphFile = "tinyCG.txt";
 
             using (var stream = new StreamReader(graphFile))
             {
@@ -25,15 +25,15 @@ namespace GraphClient
             Console.WriteLine("Avg degree: " + graph.GetAvgDegree());
             Console.WriteLine("Self loops: " + graph.GetNumberOfSelfLoops());
 
-            var search = new DepthFirstSearch(graph, 9);
-            //for (var v = 0; v < graph.CountVertices(); v++)
-            //{
-            //    if (search.IsMarked(v))
-            //    {
-            //        Console.Write(v + " ");
-            //    }
-            //}
-            //Console.WriteLine();
+            var search = new DepthFirstSearch(graph, 0);
+            for (var v = 0; v < graph.CountVertices(); v++)
+            {
+                if (search.IsMarked(v))
+                {
+                    Console.Write(v + " ");
+                }
+            }
+            Console.WriteLine();
 
             if (search.Count() != graph.CountVertices())
             {
